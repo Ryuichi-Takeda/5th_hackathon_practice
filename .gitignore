@@ -1,0 +1,4 @@
+/docker/mysql/data
+.history
+/node_modules
+/.vscode
