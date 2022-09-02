@@ -16,10 +16,10 @@ class API
                 'age' => $d['age'],
             );
         }
-        return json_encode($users);
+        return json_encode($users,JSON_UNESCAPED_UNICODE);
     }
 }
 
 $api = new API;
-header('Content-Type: application/json');
+header('Content-Type: application/json;charset=utf-8');
 echo $api->Select();
