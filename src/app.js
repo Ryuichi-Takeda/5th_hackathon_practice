@@ -1,5 +1,5 @@
 const readUser = async () => {
-  const { data } = await axios.get("http://localhost/index.php");
+  const { data } = await axios.get("http://localhost/modules/api/users.php");
   return data;
 };
 

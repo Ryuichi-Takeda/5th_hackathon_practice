@@ -12,7 +12,6 @@ services:
       - ./docker/nginx/etc/nginx/conf.d:/etc/nginx/conf.d
       - ./src:/var/www/html
     environment:
-      APP_ENV: "development"
       TZ: "Asia/Tokyo"
     env_file:
       - .env.development
@@ -27,8 +26,6 @@ services:
       - db
     volumes:
       - ./src:/var/www/html
-    environment:
-      APP_ENV: 'development'
     env_file:
       - .env.development
 
@@ -43,20 +40,10 @@ services:
       - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./docker/mysql/etc/mysql/conf.d:/etc/mysql/conf.d
     environment:
-      APP_ENV: "development"
       TZ: "Asia/Tokyo"
       MYSQL_ROOT_PASSWORD: password
     env_file:
       - .env.development
 
-  phpmyadmin:
-    container_name: ryuichi_db_admin
-    image: phpmyadmin/phpmyadmin:latest
-    ports:
-      - "8888:80"
-    depends_on:
-      - db
-
 volumes:
   db-volume:
-  maildir: {}
