@@ -11,6 +11,11 @@ services:
     volumes:
       - ./docker/nginx/etc/nginx/conf.d:/etc/nginx/conf.d
       - ./src:/var/www/html
+    environment:
+      TZ: "Asia/Tokyo"
+    env_file:
+      - .env.development
+
   app:
     platform: linux/amd64
     container_name: ryuichi_api_dev
@@ -21,27 +26,24 @@ services:
       - db
     volumes:
       - ./src:/var/www/html
+    env_file:
+      - .env.development
+
   db:
     container_name: ryuichi_db_dev
     platform: linux/amd64
     build: ./docker/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: password
     ports:
       - "13306:3306"
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./docker/mysql/etc/mysql/conf.d:/etc/mysql/conf.d
-
-  phpmyadmin:
-    container_name: ryuichi_db_admin
-    image: phpmyadmin/phpmyadmin:latest
-    ports:
-      - "8888:80"
-    depends_on:
-      - db
+    environment:
+      TZ: "Asia/Tokyo"
+      MYSQL_ROOT_PASSWORD: password
+    env_file:
+      - .env.development
 
 volumes:
   db-volume:
-  maildir: {}
