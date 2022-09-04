@@ -25,4 +25,13 @@ class User
         }
         return json_encode($users);
     }
+
+    public function create_user(string $username, string $age)
+    {
+        $stmt = $this->db->prepare('INSERT INTO users (name, age) VALUES (:name, :age)');
+        $stmt->bindValue(':name', $username, PDO::PARAM_STR);
+        $stmt->bindValue(':age', $age, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
 }
