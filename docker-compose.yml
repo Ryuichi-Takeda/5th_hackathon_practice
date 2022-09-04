@@ -41,7 +41,6 @@ services:
       - ./docker/mysql/etc/mysql/conf.d:/etc/mysql/conf.d
     environment:
       TZ: "Asia/Tokyo"
-      MYSQL_ROOT_PASSWORD: password
     env_file:
       - .env.development
 

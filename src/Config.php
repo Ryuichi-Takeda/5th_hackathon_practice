@@ -1,7 +1,7 @@
 <?php
 session_start();
 define('DSN', 'mysql:host=' . getenv('MYSQL_HOST') . ';dbname=' . getenv('MYSQL_DATABASE') . ';charset=utf8mb4');
-define('DB_USER', getenv('MYSQL_USER'));
+define('DB_USER', 'root');
 define('DB_PASS', getenv('MYSQL_PASSWORD'));
 define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
 
